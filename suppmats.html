@@ -1,0 +1,1929 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<style>
+/* set the CSS */
+.line {
+  fill: none;
+  stroke: steelblue;
+  stroke-width: 2px;
+}
+
+.line_f {
+  fill: none;
+  stroke: steelblue;
+  stroke-width: 6px;
+}
+
+.lines{
+	stroke:steelblue;
+	stroke-width:1px;
+}
+
+.labels{
+	width:10px;
+	word-wrap: break-word;
+}
+
+.node {
+	fill:white;
+	stroke:steelblue;
+	stroke-width: 2px;
+}
+
+.ldivs{
+	background:white;
+}
+
+#form{
+	width:300px;
+	height:97%;
+	font-size:11px;
+	font-family:sans-serif;
+	float:left;
+	background:#F8F8F8;
+	margin:5px;
+	padding:5px;
+}
+.formdiv {
+	float:left;
+	margin-bottom:10px;
+}
+#header2{
+	font-size:14px;
+	font-family:sans-serif;
+	color:steelblue;
+	margin-top:5px;
+	margin-left:5px;
+}
+#vis {
+	float:left;
+	width:670px;
+	margin:5px;
+}
+#container {
+	width: 1000px;
+	height: 625px;
+	float:left;
+	border: 1px solid #ccc;
+}
+#filter{
+	float:left;
+	margin-bottom:5px;
+	background:#F8F8F8;
+}
+
+#timeline{
+	float:left;
+	background:#F8F8F8;
+}
+
+.lableLine{
+	stroke-width:1px;
+	stroke:steelblue;
+
+}
+#note{
+	float:left;
+	width:800px;
+	height:600px;
+	margin:5px;
+	word-wrap: break-word;
+}
+
+#note.text{
+	padding:10px;
+}
+
+.flheader{
+	background:#64acdd;
+	padding:2px;
+}
+.flnote {
+	width:600px;
+	height:800px;
+	padding:5px;
+}
+.flnote_div {
+	float:left;
+	position:absolute;
+	background:white;
+	width:750px;
+	height:800px;
+	padding:5px;
+	font-size:11px;
+	font-family:sans-serif;
+	color:black;
+}
+.dates:hover{
+	cursor:pointer;
+}
+
+.keywords:hover{
+	cursor:pointer;
+}
+
+.imgIcon{
+	padding:1px;
+	border:1px solid #021a40;
+	background-color:#ff0;
+}
+
+.imgIcon:hover{
+	cursor:pointer;
+}
+
+.imgIconRect{
+	stroke:steelblue;
+	stroke-width:0.5px;
+	fill:none;
+}
+
+div.tooltip {
+  position: absolute;
+  text-align: left;
+  width: 200px;
+  padding: 5px;
+  font: 10px sans-serif;
+  background: lightsteelblue;
+  border: 0px;
+  border-radius: 4px;
+  pointer-events: none;
+}
+
+
+.phases:hover {
+	stroke-width:1px;
+}
+
+
+</style>
+	<head>
+	    <!-- Meta, title, CSS, favicons, etc. -->
+	    <meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta name="description" content="">
+		<meta name="author" content="">
+	
+		<title>
+		  
+		    Framework for Externalizing Implicit Error Using Visualization
+		  
+		</title>
+	
+		<!-- Bootstrap core CSS -->
+		<link href="assets/css/bootstrap.min.css" rel="stylesheet">
+		
+		<!-- Fonts -->
+		<link href='http://fonts.googleapis.com/css?family=Roboto:400,100,300,700,400italic,700italic' rel='stylesheet' type='text/css'>
+		
+		<!-- Rocket extras -->
+		<link href="assets/css/animate.css" rel="stylesheet">
+		<link href="assets/css/prettyPhoto.css" rel="stylesheet">
+		<link href="assets/css/style.css" rel="stylesheet">
+		<!--[if lt IE 9]><script src="assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
+		
+		<!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+		<!--[if lt IE 9]>
+		  <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+		  <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+		<![endif]-->
+		
+		<!-- Favicons -->
+		<link rel="shortcut icon" href="../assets/favicon.png">
+	</head>	  
+	<script src="https://d3plus.org/js/d3plus-text.v0.9.full.min.js"></script>	  
+	<body>
+	<!-- Start Rocket -->
+	<!-- ********************* -->
+	
+	<!-- Parallax Background
+	================================================== -->
+	<!-- image is set in the CSS as a background image -->	<!-- End Parallax Background
+	================================================== -->
+	
+	<!-- Start Header
+	================================================== -->
+	<header id="header" class="navbar navbar-inverse navbar-fixed-top" role="banner">
+      <div class="container">
+	    <div class="navbar-header">
+	      <button class="navbar-toggle" type="button" data-toggle="collapse" data-target=".bs-navbar-collapse">
+	        <span class="sr-only">Toggle navigation</span>
+	        <span class="icon-bar"></span>
+	        <span class="icon-bar"></span>
+	        <span class="icon-bar"></span>
+	      </button>
+	      <!-- Your Logo -->
+ <a href="../" class="navbar-brand">A Framework for Externalizing Implicit Error Using Visualization<p style="font-size:12px;font-style:italic;">by Nina McCurdy, Julie Gerdes, Miriah Meyer</p></a>
+		    </div>
+	    <!-- Start Navigation -->
+	    <nav class="collapse navbar-collapse bs-navbar-collapse navbar-right" role="navigation">
+	      <ul class="nav navbar-nav">
+	        <li>
+	          <a href="index.html">Overview</a>
+	        </li>
+	        <li>
+	          <a href="suppmats.html">Supplemental Materials</a>
+	        </li>
+            </ul>
+	   </nav>
+	  </div>
+	</header>
+	<!-- ==================================================
+	End Header -->
+     <section id="suppmat" class="section">
+		<div class="container">
+		 <p></p> 
+
+<h2>Interactive timeline of field notes</h2>
+<p>As described in the paper, we used this project as an opportunity to investigate new ways
+of approaching, recording, and reporting design study research. In support of this learning, 
+we decided early on to capture notes and insights as frequently as possible both for our own 
+reflective analysis and for auditing by others for validation. We adopted a practice of taking 
+field notes following meaningful interactions, providing a log through which we could trace 
+the development of insights and ideas. While we are limited in what we can share due to the nature 
+of the project domain, we offer an interactive timeline of high-level summaries as a first step toward these efforts. 
+By doing this we hope to contribute to an ongoing dialogue within the visualization community 
+surrounding the recording and reporting of design study research process and findings</p>
+
+
+<p>The timeline was built using the D3 Javascript Library. Hovering over or clicking nodes in the timeline 
+reveals the associated field note summary. Brush filters support filtering across time periods. Hovering over the colored rectangles above the timeline reveals overview details about the various stages of the study.</p>
+
+<!--iframe src="interactive_timeline_of_field_notes/timeline.html" height="900" width="950" style="border:none" scrolling="no" ></iframe-->
+
+		
+        </div>
+	
+<div class="container">
+<p></p>	
+<div id="vis">
+	<div id="filter"></div>
+	<div id="timeline"></div>
+</div>
+<div id="note"></div>
+</div>
+	</div>
+	
+	</section>
+    
+    
+	<!-- Start Hero Section
+	================================================== -->	<!-- ================================================== 
+	End Hero -->
+	
+	<!-- Start Features
+	================================================== -->
+	
+	<!-- ==================================================
+	End Features -->
+	
+	<!-- Start Image Block
+	================================================== -->
+	<!-- ==================================================
+	End Image Blcok -->
+	
+	<!-- Start Gallery Block
+	================================================== -->
+	<!-- ==================================================
+	End Gallery Blcok -->
+	
+	<!-- Start Text Block
+	================================================== -->
+	<!-- ==================================================
+	End Text Blcok -->
+	
+	<!-- Start Newsletter Block
+	================================================== -->	<!-- ==================================================
+	End Slider Blcok -->
+	
+	<!-- Start Newsletter Block
+	================================================== -->	<!-- ==================================================
+	End Newsletter Blcok -->
+	
+	
+	
+	<!-- Bootstrap core JavaScript
+	================================================== -->
+	<!-- Placed at the end of the document so the pages load faster -->
+	<script src="assets/js/jquery-1.10.2.min.js"></script>
+	<script src="assets/js/bootstrap.js"></script>
+	<script src="assets/js/waypoints.min.js"></script>
+	<script src="assets/js/jquery.scrollto.min.js"></script>
+	<script src="assets/js/jquery.localscroll.min.js"></script>
+	<script src="assets/js/jquery.prettyPhoto.js"></script>
+	<script src="assets/js/scripts.js"></script>
+	
+	 <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-65287314-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+	<!-- ********************* -->
+	<!-- Start Rocket -->
+  
+  <!-- load the d3.js library -->    	
+  <script src="https://d3js.org/d3.v4.min.js"></script>
+
+  <script>
+  	var select_ID;
+  // set the dimensions and margins of the graph
+
+  var note_width = 750;
+
+  var margin = {top: 40, right: 30, bottom: 20, left: 20},
+      width = 800 - margin.left - margin.right,
+      height = 175 - margin.top - margin.bottom;
+
+  var margin_f = {top: 15, right: 30, bottom: 20, left: 20},
+      height_f = 60 - margin_f.top - margin_f.bottom;	
+
+  // parse the date / time
+  var parseTime = d3.timeParse("%d-%b-%y");
+
+  // set the ranges
+  var x = d3.scaleTime().range([0, width]);
+  var y = d3.scaleLinear().range([height, 0]);
+
+  var xf = d3.scaleLinear().range([0, width])
+  var yf = d3.scaleLinear().range([height_f, 0]);
+
+  var ypos = 0;
+  // define the line
+  var valueline = d3.line()
+      .x(function(d) { return x(d.date); })
+      .y(function(d) { return y(height/2); });
+
+  var filter = d3.select("#filter").append("svg")
+      .attr("width", width + margin_f.left + margin_f.right)
+      .attr("height", height_f + margin_f.top + margin_f.bottom)
+   	.append("g")
+      .attr("transform",
+            "translate(" + margin_f.left + "," + margin_f.top + ")");  
+
+
+  // append the svg obgect to the body of the page
+  // appends a 'group' element to 'svg'
+  // moves the 'group' element to the top left margin
+  var svg = d3.select("#timeline").append("svg")
+      .attr("width", width + margin.left + margin.right)
+      .attr("height", height + margin.top + margin.bottom)
+    .append("g")
+      .attr("transform",
+            "translate(" + margin.left + "," + margin.top + ")");
+
+  		  var note = d3.select("#note").append("div");
+		  
+  		  var data_all_dates;
+  		  var data_all;
+  		  var data;
+  		  var data_sel;	  
+		  
+		  
+  	  var div = d3.select("body").append("div")
+  	      .attr("class", "tooltip")
+  	      .style("opacity", 0);		  
+		  
+
+  var phasedata = [
+  	{begindate:"2016-11-07 09:03:12",enddate:"2017-01-04 10:03:18",title:"Preconditioning",participants:"vis researchers, domain experts, stakeholders",outcomes:"understanding of broader domain analysis and challenges, initiation of design study collaboration, buy-in from stakeholders", methods:"informal interviews, presentations"},
+  	{begindate:"2017-01-04 10:03:18",enddate:"2017-05-10 05:03:22",title:"Learning about Zika outbreak analysis",participants:"vis researchers, primary Zika expert collaborators, fellow tool builders, tertiary collaborators, larger group of Zika experts, stakeholders",outcomes:"data and task abstraction, data and task technology probe", methods:""},
+  	{begindate:"2017-09-20 09:03:48",enddate:"2017-12-10 09:03:24",title:"Learning about discrepancies",participants:"vis researchers, primary Zika expert collaborators, larger group of Zika experts",outcomes:"annotation technology probe, understanding of data discrepancies in outbreak analysis, preliminary results on annotation as an externalization mechnanism, sample set of discrepancy descriptions", methods:""},
+  	{begindate:"2017-12-10 09:03:24",enddate:"2018-03-26 09:00:41",title:"Formalization of learning",participants:"vis researchers, primary Zika expert collaborators, additional Zika experts",outcomes:"framework for externalizing implicit error, instantation of framework", methods:""}
+  ];
+
+  var phasecolors = ["#fbb4ae","#b3cde3","#ccebc5","#decbe4"];
+
+  /*ADD DATA HERE*/
+  		  var alldata = [
+  		  {
+  		      "type": "header",
+  		      "version": "4.7.2",
+  		      "comment": "Export to JSON plugin for PHPMyAdmin"
+  		  },
+  		  {
+  		      "type": "database",
+  		      "name": "ZikaVisTimeline"
+  		  },
+  		  {
+  		      "type": "table",
+  		      "name": "_fieldnotes",
+  		      "database": "ZikaVisTimeline",
+  		      "data": 
+  		  [
+  		  {
+  		      "timestmp": "2016-11-07 09:03:12",
+  		      "fieldnote": "Field study day 1: orientation",
+  		      "upload": "",
+  		      "upload_path": "files\/",
+  		      "upload_type": "",
+  		      "imgW": "0",
+  		      "imgH": "0",
+  		      "upload_annotation": "",
+  		      "keywords": "Start of field study",
+  		      "projectID": "4",
+  		      "tag": "0",
+  		      "redacted": ""
+  		  },
+  		  {
+  		      "timestmp": "2016-11-08 08:03:25",
+  		      "fieldnote": "met with members of division through which the field study is based (home-division), met with communications team about possible outreach tool",
+  		      "upload": "",
+  		      "upload_path": "files\/",
+  		      "upload_type": "",
+  		      "imgW": "0",
+  		      "imgH": "0",
+  		      "upload_annotation": "",
+  		      "keywords": "First day of field study",
+  		      "projectID": "4",
+  		      "tag": "0",
+  		      "redacted": ""
+  		  },
+  		  {
+  		      "timestmp": "2016-11-09 09:03:27",
+  		      "fieldnote": "begin weekly check-ins with home-division advisor.",
+  		      "upload": "",
+  		      "upload_path": "files\/",
+  		      "upload_type": "",
+  		      "imgW": "0",
+  		      "imgH": "0",
+  		      "upload_annotation": "",
+  		      "keywords": "weekly check-in with home-division advisor",
+  		      "projectID": "4",
+  		      "tag": "0",
+  		      "redacted": ""
+  		  },
+  		  {
+  		      "timestmp": "2016-11-10 08:03:29",
+  		      "fieldnote": "- meeting with communications team to discuss outreach tool<br \/>\r\n- meeting with Zika Program stakeholder to discuss potential project.",
+  		      "upload": "",
+  		      "upload_path": "files\/",
+  		      "upload_type": "",
+  		      "imgW": "0",
+  		      "imgH": "0",
+  		      "upload_annotation": "",
+  		      "keywords": "meetings with Zika Program stakeholder, comms team",
+  		      "projectID": "4",
+  		      "tag": "0",
+  		      "redacted": "true"
+  		  },
+  		  {
+  		      "timestmp": "2016-11-10 09:03:43",
+  		      "fieldnote": "Met with [group#1] team to discuss possible collaboration. Highly compelling project, but unclear if there is a vis research problem. ",
+  		      "upload": "",
+  		      "upload_path": "files\/",
+  		      "upload_type": "",
+  		      "imgW": "0",
+  		      "imgH": "0",
+  		      "upload_annotation": "",
+  		      "keywords": "meeting with [group#1]",
+  		      "projectID": "4",
+  		      "tag": "0",
+  		      "redacted": "true"
+  		  },
+  		  {
+  		      "timestmp": "2016-11-14 08:03:08",
+  		      "fieldnote": "meeting with [group#2] to discuss potential vis projects - discussed vis platform for analysis by GH experts.",
+  		      "upload": "",
+  		      "upload_path": "files\/",
+  		      "upload_type": "",
+  		      "imgW": "0",
+  		      "imgH": "0",
+  		      "upload_annotation": "",
+  		      "keywords": "meeting with [group#2]",
+  		      "projectID": "4",
+  		      "tag": "0",
+  		      "redacted": "true"
+  		  },
+  		  {
+  		      "timestmp": "2016-11-14 09:03:19",
+  		      "fieldnote": "discussed possible projects",
+  		      "upload": "",
+  		      "upload_path": "files\/",
+  		      "upload_type": "",
+  		      "imgW": "0",
+  		      "imgH": "0",
+  		      "upload_annotation": "",
+  		      "keywords": "weekly check-in with home-division advisor",
+  		      "projectID": "4",
+  		      "tag": "0",
+  		      "redacted": ""
+  		  },
+  		  {
+  		      "timestmp": "2016-11-15 08:03:34",
+  		      "fieldnote": "meeting with [group#3] to discuss visualization for outreach, storytelling",
+  		      "upload": "",
+  		      "upload_path": "files\/",
+  		      "upload_type": "",
+  		      "imgW": "0",
+  		      "imgH": "0",
+  		      "upload_annotation": "",
+  		      "keywords": "meeting with [group#3](outreach)",
+  		      "projectID": "4",
+  		      "tag": "0",
+  		      "redacted": "true"
+  		  },
+  		  {
+  		      "timestmp": "2016-11-15 08:03:53",
+  		      "fieldnote": "presented slides on data visualization and applied vis research home-division. The goal of the talk was to give a better sense of the research that we do and how our work could contribute to GH efforts",
+  		      "upload": "",
+  		      "upload_path": "files\/",
+  		      "upload_type": "",
+  		      "imgW": "0",
+  		      "imgH": "0",
+  		      "upload_annotation": "",
+  		      "keywords": "Presentation to home-division",
+  		      "projectID": "4",
+  		      "tag": "0",
+  		      "redacted": ""
+  		  },
+  		  {
+  		      "timestmp": "2016-11-17 08:03:44",
+  		      "fieldnote": "Another meeting with [group#2] to discuss vis platform for GH experts",
+  		      "upload": "",
+  		      "upload_path": "files\/",
+  		      "upload_type": "",
+  		      "imgW": "0",
+  		      "imgH": "0",
+  		      "upload_annotation": "",
+  		      "keywords": "meeting with [group#2](analysis)",
+  		      "projectID": "4",
+  		      "tag": "0",
+  		      "redacted": "true"
+  		  },
+  		  {
+  		      "timestmp": "2016-11-18 09:03:32",
+  		      "fieldnote": "Beginning implementation of outreach tool for communications team. \"Map of GH investments bolstering American companies, universities and research orgs\" Tool will support exploration of GH investments by congressional district.",
+  		      "upload": "",
+  		      "upload_path": "files\/",
+  		      "upload_type": "",
+  		      "imgW": "0",
+  		      "imgH": "0",
+  		      "upload_annotation": "",
+  		      "keywords": "begin work on outreach tool",
+  		      "projectID": "4",
+  		      "tag": "0",
+  		      "redacted": ""
+  		  },
+  		  {
+  		      "timestmp": "2016-11-21 08:03:21",
+  		      "fieldnote": "presented slides on data visualization and applied visualization research to GH experts working with monitoring and evaluation<br \/>\r\n<br \/> Led to great discussion and interest in collaboration.\r\n",
+  		      "upload": "",
+  		      "upload_path": "files\/",
+  		      "upload_type": "",
+  		      "imgW": "0",
+  		      "imgH": "0",
+  		      "upload_annotation": "",
+  		      "keywords": "Present slides to internal group",
+  		      "projectID": "4",
+  		      "tag": "0",
+  		      "redacted": ""
+  		  },
+  		  {
+  		      "timestmp": "2016-11-21 09:03:03",
+  		      "fieldnote": "discuss projects, map out timeline.",
+  		      "upload": "",
+  		      "upload_path": "files\/",
+  		      "upload_type": "",
+  		      "imgW": "0",
+  		      "imgH": "0",
+  		      "upload_annotation": "",
+  		      "keywords": "weekly check-in with home-division advisor",
+  		      "projectID": "4",
+  		      "tag": "0",
+  		      "redacted": ""
+  		  },
+  		  {
+  		      "timestmp": "2016-11-22 10:03:41",
+  		      "fieldnote": "meeting with Zika stakeholders and fellow tool builders to discuss Zika vis project, progress, challenges, and to begin to map out the data - two types: data about response efforts, data about spread of Zika.",
+  		      "upload": "",
+  		      "upload_path": "files\/",
+  		      "upload_type": "",
+  		      "imgW": "0",
+  		      "imgH": "0",
+  		      "upload_annotation": "",
+  		      "keywords": "meeting with Zika stakeholders + fellow tool builders",
+  		      "projectID": "4",
+  		      "tag": "0",
+  		      "redacted": "true"
+  		  },
+  		  {
+  		      "timestmp": "2016-11-22 14:03:15",
+  		      "fieldnote": "meeting with [group#4] team. A lot of great ideas for projects. Also discussed challenges surrounding data. ",
+  		      "upload": "",
+  		      "upload_path": "files\/",
+  		      "upload_type": "",
+  		      "imgW": "0",
+  		      "imgH": "0",
+  		      "upload_annotation": "",
+  		      "keywords": "initial meeting with [group#4]",
+  		      "projectID": "4",
+  		      "tag": "0",
+  		      "redacted": "true"
+  		  },
+  		  {
+  		      "timestmp": "2016-11-28 09:03:31",
+  		      "fieldnote": "Primary project: design study for Zika program - mapping GH response efforts to combat the Zika Virus.<br \/>\r\n<br \/>\r\nPossible secondary projects (time permitting): [group#3] outreach project; [group#4] mapping project; other short term projects",
+  		      "upload": "",
+  		      "upload_path": "files\/",
+  		      "upload_type": "",
+  		      "imgW": "0",
+  		      "imgH": "0",
+  		      "upload_annotation": "",
+  		      "keywords": "prioritizing design study with Zika stakeholders",
+  		      "projectID": "4",
+  		      "tag": "0",
+  		      "redacted": ""
+  		  },
+  		  {
+  		      "timestmp": "2016-11-28 09:03:35",
+  		      "fieldnote": "finalize project plan - discuss projects, gather feedback",
+  		      "upload": "",
+  		      "upload_path": "files\/",
+  		      "upload_type": "",
+  		      "imgW": "0",
+  		      "imgH": "0",
+  		      "upload_annotation": "",
+  		      "keywords": "weekly check-in with home-division advisor",
+  		      "projectID": "4",
+  		      "tag": "0",
+  		      "redacted": ""
+  		  },
+  		  {
+  		      "timestmp": "2016-11-29 08:03:16",
+  		      "fieldnote": "Meeting with [group#5] to discuss vis\/potential collaboration",
+  		      "upload": "",
+  		      "upload_path": "files\/",
+  		      "upload_type": "",
+  		      "imgW": "0",
+  		      "imgH": "0",
+  		      "upload_annotation": "",
+  		      "keywords": "initial meeting with [group#5]",
+  		      "projectID": "4",
+  		      "tag": "0",
+  		      "redacted": ""
+  		  },
+  		  {
+  		      "timestmp": "2016-11-29 10:03:57",
+  		      "fieldnote": "preliminary interview with [group#3] - narrow in on data and tasks for vis for outreach. Could be a great secondary collaboration if there's time.",
+  		      "upload": "",
+  		      "upload_path": "files\/",
+  		      "upload_type": "",
+  		      "imgW": "0",
+  		      "imgH": "0",
+  		      "upload_annotation": "",
+  		      "keywords": "meeting with [group#3](outreach)",
+  		      "projectID": "4",
+  		      "tag": "0",
+  		      "redacted": "true"
+  		  },
+  		  {
+  		      "timestmp": "2016-11-30 09:03:51",
+  		      "fieldnote": "continued discussion with [group#2] re vis for analysis",
+  		      "upload": "",
+  		      "upload_path": "files\/",
+  		      "upload_type": "",
+  		      "imgW": "0",
+  		      "imgH": "0",
+  		      "upload_annotation": "",
+  		      "keywords": "meeting with [group#2](analysis)",
+  		      "projectID": "4",
+  		      "tag": "0",
+  		      "redacted": "true"
+  		  },
+  		  {
+  		      "timestmp": "2016-12-05 09:03:11",
+  		      "fieldnote": "general updates on progress",
+  		      "upload": "",
+  		      "upload_path": "files\/",
+  		      "upload_type": "",
+  		      "imgW": "0",
+  		      "imgH": "0",
+  		      "upload_annotation": "",
+  		      "keywords": "weekly check-in with home-division advisor",
+  		      "projectID": "4",
+  		      "tag": "0",
+  		      "redacted": ""
+  		  },
+  		  {
+  		      "timestmp": "2016-12-05 12:03:33",
+  		      "fieldnote": "review current system, sketch ideas for possible vis extensions. Acting as a vis consultant from here on out - another member of home-division is taking on the project",
+  		      "upload": "",
+  		      "upload_path": "files\/",
+  		      "upload_type": "",
+  		      "imgW": "0",
+  		      "imgH": "0",
+  		      "upload_annotation": "",
+  		      "keywords": "meeting with [group#2](analysis)",
+  		      "projectID": "4",
+  		      "tag": "0",
+  		      "redacted": ""
+  		  },
+  		  {
+  		      "timestmp": "2016-12-06 09:03:59",
+  		      "fieldnote": "preliminary interview + visualization awareness session. ",
+  		      "upload": "",
+  		      "upload_path": "files\/",
+  		      "upload_type": "",
+  		      "imgW": "0",
+  		      "imgH": "0",
+  		      "upload_annotation": "",
+  		      "keywords": "meeting with [group#3](outreach)",
+  		      "projectID": "4",
+  		      "tag": "0",
+  		      "redacted": "true"
+  		  },
+  		  {
+  		      "timestmp": "2016-12-12 09:03:11",
+  		      "fieldnote": "Discussed plans moving forward. Feedback on outreach tool.",
+  		      "upload": "",
+  		      "upload_path": "files\/",
+  		      "upload_type": "",
+  		      "imgW": "0",
+  		      "imgH": "0",
+  		      "upload_annotation": "",
+  		      "keywords": "weekly check-in with home-division advisor",
+  		      "projectID": "4",
+  		      "tag": "0",
+  		      "redacted": ""
+  		  },
+  		  {
+  		      "timestmp": "2016-12-12 09:03:37",
+  		      "fieldnote": "met with fellow tool builders and Zika primary collaborator to discuss data - strategize on data wrangling",
+  		      "upload": "",
+  		      "upload_path": "files\/",
+  		      "upload_type": "",
+  		      "imgW": "0",
+  		      "imgH": "0",
+  		      "upload_annotation": "",
+  		      "keywords": "meeting with Zika primary collaborator + fellow tool builders",
+  		      "projectID": "4",
+  		      "tag": "0",
+  		      "redacted": "true"
+  		  },
+  		  {
+  		      "timestmp": "2016-12-20 09:03:00",
+  		      "fieldnote": "Feedback on outreach tool.",
+  		      "upload": "",
+  		      "upload_path": "files\/",
+  		      "upload_type": "",
+  		      "imgW": "0",
+  		      "imgH": "0",
+  		      "upload_annotation": "",
+  		      "keywords": "weekly check-in with home-division advisor",
+  		      "projectID": "4",
+  		      "tag": "0",
+  		      "redacted": ""
+  		  },
+  		  {
+  		      "timestmp": "2017-01-04 10:03:18",
+  		      "fieldnote": "First official preliminary interview with Zika primary collaborator. <br \/>\r\nDiscussed current understanding of data and tasks.<br \/>\r\nConducted think-aloud with existing ArcGIS system. This helped clarify tasks and revealed low-level data vis challenges<br \/>",
+  		      "upload": "",
+  		      "upload_path": "files\/",
+  		      "upload_type": "",
+  		      "imgW": "0",
+  		      "imgH": "0",
+  		      "upload_annotation": "",
+  		      "keywords": "preliminary interview with Zika primary collaborator",
+  		      "projectID": "4",
+  		      "tag": "0",
+  		      "redacted": "true"
+  		  },
+  		  {
+  		      "timestmp": "2017-01-04 15:03:39",
+  		      "fieldnote": "Think-aloud revealed issues of occlusion resulting from multiple layered textures (exhibited in ArcGIS). ",
+  		      "upload": "occlusion.png",
+  		      "upload_path": "files\/occlusion.png",
+  		      "upload_type": "image\/png",
+  		      "imgW": "4017",
+  		      "imgH": "2976",
+  		      "upload_annotation": "",
+  		      "keywords": "screenshots from think-aloud",
+  		      "projectID": "4",
+  		      "tag": "0",
+  		      "redacted": "true"
+  		  },
+  		  {
+  		      "timestmp": "2017-01-09 10:03:35",
+  		      "fieldnote": "feedback on preliminary Zika research. Triangulation of initial ideas and hypotheses.",
+  		      "upload": "",
+  		      "upload_path": "files\/",
+  		      "upload_type": "",
+  		      "imgW": "0",
+  		      "imgH": "0",
+  		      "upload_annotation": "",
+  		      "keywords": "weekly check-in with home-division advisor",
+  		      "projectID": "4",
+  		      "tag": "0",
+  		      "redacted": ""
+  		  },
+  		  {
+  		      "timestmp": "2017-01-20 10:03:23",
+  		      "fieldnote": "update on progress, general feedback",
+  		      "upload": "",
+  		      "upload_path": "files\/",
+  		      "upload_type": "",
+  		      "imgW": "0",
+  		      "imgH": "0",
+  		      "upload_annotation": "",
+  		      "keywords": "weekly check-in with home-division advisor",
+  		      "projectID": "4",
+  		      "tag": "0",
+  		      "redacted": ""
+  		  },
+  		  {
+  		      "timestmp": "2017-01-25 10:03:45",
+  		      "fieldnote": "met to brainstorm ideas, gather feedback on sketches, discuss data, map out timeline",
+  		      "upload": "",
+  		      "upload_path": "files\/",
+  		      "upload_type": "",
+  		      "imgW": "0",
+  		      "imgH": "0",
+  		      "upload_annotation": "",
+  		      "keywords": "meeting with fellow tool builder",
+  		      "projectID": "4",
+  		      "tag": "0",
+  		      "redacted": "true"
+  		  },
+  		  {
+  		      "timestmp": "2017-01-30 09:03:22",
+  		      "fieldnote": "general update, feedback",
+  		      "upload": "",
+  		      "upload_path": "files\/",
+  		      "upload_type": "",
+  		      "imgW": "0",
+  		      "imgH": "0",
+  		      "upload_annotation": "",
+  		      "keywords": "weekly check-in with home-division advisor",
+  		      "projectID": "4",
+  		      "tag": "0",
+  		      "redacted": ""
+  		  },
+  		  {
+  		      "timestmp": "2017-01-31 09:03:35",
+  		      "fieldnote": "presented outreach tool to senior personnel - next step is to publish to GH website. ",
+  		      "upload": "outreachTool.png",
+  		      "upload_path": "files\/outreachTool.png",
+  		      "upload_type": "image\/png",
+  		      "imgW": "7455",
+  		      "imgH": "3100",
+  		      "upload_annotation": "",
+  		      "keywords": "presentation of outreach tool to senior personnel",
+  		      "projectID": "4",
+  		      "tag": "0",
+  		      "redacted": ""
+  		  },
+  		  {
+  		      "timestmp": "2017-02-07 09:03:11",
+  		      "fieldnote": "Feedback on prototypes; discussed broader challenges surrounding inconsistencies in GH data",
+  		      "upload": "",
+  		      "upload_path": "files\/",
+  		      "upload_type": "",
+  		      "imgW": "0",
+  		      "imgH": "0",
+  		      "upload_annotation": "",
+  		      "keywords": "weekly check-in with home-division advisor",
+  		      "projectID": "4",
+  		      "tag": "0",
+  		      "redacted": ""
+  		  },
+  		  {
+  		      "timestmp": "2017-02-08 09:03:46",
+  		      "fieldnote": "Adobe illustrator prototypes",
+  		      "upload": "AI_prototypes.png",
+  		      "upload_path": "files\/AI_prototypes.png",
+  		      "upload_type": "image\/png",
+  		      "imgW": "6546",
+  		      "imgH": "2348",
+  		      "upload_annotation": "",
+  		      "keywords": "AI prototypes",
+  		      "projectID": "4",
+  		      "tag": "0",
+  		      "redacted": ""
+  		  },
+  		  {
+  		      "timestmp": "2017-02-08 10:03:39",
+  		      "fieldnote": "met with a member of the home-division is an expert on collecting, processing, and presenting global health data. <br \/>\r\nDiscussed sources of discrepancies in global health data. <br \/>\r\nConfirmed some initial hypotheses surrounding discrepancy.",
+  		      "upload": "",
+  		      "upload_path": "files\/",
+  		      "upload_type": "",
+  		      "imgW": "0",
+  		      "imgH": "0",
+  		      "upload_annotation": "",
+  		      "keywords": "meeting with home-division Data expert",
+  		      "projectID": "4",
+  		      "tag": "0",
+  		      "redacted": "true"
+  		  },
+  		  {
+  		      "timestmp": "2017-02-08 12:03:00",
+  		      "fieldnote": "really interesting discussion. Expert knowledge includes a mental database of country specific inconsistencies. <br \/>\r\n-discussed issues of data availability, strength of surveillance systems. <br \/>\r\n-users will interpret data differently based on level of expert knowledge",
+  		      "upload": "",
+  		      "upload_path": "files\/",
+  		      "upload_type": "",
+  		      "imgW": "0",
+  		      "imgH": "0",
+  		      "upload_annotation": "",
+  		      "keywords": "call with primary collaborator",
+  		      "projectID": "4",
+  		      "tag": "0",
+  		      "redacted": "true"
+  		  },
+  		  {
+  		      "timestmp": "2017-02-14 14:03:16",
+  		      "fieldnote": "general feedback, update on progress",
+  		      "upload": "",
+  		      "upload_path": "files\/",
+  		      "upload_type": "",
+  		      "imgW": "0",
+  		      "imgH": "0",
+  		      "upload_annotation": "",
+  		      "keywords": "weekly check-in with home-division advisor",
+  		      "projectID": "4",
+  		      "tag": "0",
+  		      "redacted": ""
+  		  },
+  		  {
+  		      "timestmp": "2017-02-21 10:03:38",
+  		      "fieldnote": "discussed ideas, gathered feedback on prototypes, did some brainstorming. <br \/>\r\n- need to be able to support variation in data parameters\/availability across countries<br \/>\r\n- small multiples with reference visualizations seems to be an effective approach",
+  		      "upload": "",
+  		      "upload_path": "files\/",
+  		      "upload_type": "",
+  		      "imgW": "0",
+  		      "imgH": "0",
+  		      "upload_annotation": "",
+  		      "keywords": "meeting with primary collaborators",
+  		      "projectID": "4",
+  		      "tag": "0",
+  		      "redacted": "true"
+  		  },
+  		  {
+  		      "timestmp": "2017-02-21 14:30:23",
+  		      "fieldnote": "feedback on prototypes",
+  		      "upload": "",
+  		      "upload_path": "files\/",
+  		      "upload_type": "",
+  		      "imgW": "0",
+  		      "imgH": "0",
+  		      "upload_annotation": "",
+  		      "keywords": "weekly check-in with home-division advisor",
+  		      "projectID": "4",
+  		      "tag": "0",
+  		      "redacted": ""
+  		  },
+  		  {
+  		      "timestmp": "2017-02-24 05:03:34",
+  		      "fieldnote": "tech probe experiments<br \/>\r\n- small multiples vs. time slider, perhaps a combination of both<br \/>\r\n- bar charts vs. heat maps<br \/>\r\n- grouped bar charts for regional view<br \/>\r\n- hierarchical approach to layering multiple categorical attributes ",
+  		      "upload": "",
+  		      "upload_path": "files\/",
+  		      "upload_type": "",
+  		      "imgW": "0",
+  		      "imgH": "0",
+  		      "upload_annotation": "",
+  		      "keywords": "Experiments!",
+  		      "projectID": "4",
+  		      "tag": "0",
+  		      "redacted": ""
+  		  },
+  		  {
+  		      "timestmp": "2017-03-01 19:03:29",
+  		      "fieldnote": "met again with GH experts from initial meetings. Great discussion about official vs. unofficial data. Could be very useful programmatically to highlight data inconsistencies, etc. ",
+  		      "upload": "",
+  		      "upload_path": "files\/",
+  		      "upload_type": "",
+  		      "imgW": "0",
+  		      "imgH": "0",
+  		      "upload_annotation": "",
+  		      "keywords": "meeting with GH experts",
+  		      "projectID": "4",
+  		      "tag": "0",
+  		      "redacted": "true"
+  		  },
+  		  {
+  		      "timestmp": "2017-03-07 09:03:49",
+  		      "fieldnote": "discussed data quality issues",
+  		      "upload": "",
+  		      "upload_path": "files\/",
+  		      "upload_type": "",
+  		      "imgW": "0",
+  		      "imgH": "0",
+  		      "upload_annotation": "",
+  		      "keywords": "weekly check-in with home-division advisor",
+  		      "projectID": "4",
+  		      "tag": "0",
+  		      "redacted": ""
+  		  },
+  		  {
+  		      "timestmp": "2017-03-17 12:03:11",
+  		      "fieldnote": "screenshot from lo-fi D3 prototypes testing small multiples",
+  		      "upload": "sm2_3_17.png",
+  		      "upload_path": "files\/sm2_3_17.png",
+  		      "upload_type": "image\/png",
+  		      "imgW": "2138",
+  		      "imgH": "1660",
+  		      "upload_annotation": "",
+  		      "keywords": "D3 lo-fi prototype",
+  		      "projectID": "4",
+  		      "tag": "0",
+  		      "redacted": ""
+  		  },
+  		  {
+  		      "timestmp": "2017-03-17 12:03:20",
+  		      "fieldnote": "feedback on prototypes, would be helpful to be able to toggle choropleth by indicator. Discussed sharing the tool with the larger group of Zika stakeholders. Need to wrangle more data.",
+  		      "upload": "",
+  		      "upload_path": "files\/",
+  		      "upload_type": "",
+  		      "imgW": "0",
+  		      "imgH": "0",
+  		      "upload_annotation": "",
+  		      "keywords": "meeting with primary collaborator",
+  		      "projectID": "4",
+  		      "tag": "0",
+  		      "redacted": "true"
+  		  },
+  		  {
+  		      "timestmp": "2017-03-20 18:03:31",
+  		      "fieldnote": "lo-fi D3 prototype of the country view",
+  		      "upload": "country_view_prototype.png",
+  		      "upload_path": "files\/country_view_prototype.png",
+  		      "upload_type": "image\/png",
+  		      "imgW": "2172",
+  		      "imgH": "1390",
+  		      "upload_annotation": "",
+  		      "keywords": "lo-fi D3 prototype country view",
+  		      "projectID": "4",
+  		      "tag": "0",
+  		      "redacted": ""
+  		  },
+  		  {
+  		      "timestmp": "2017-04-06 14:20:36",
+  		      "fieldnote": "feedback on prototype",
+  		      "upload": "",
+  		      "upload_path": "files\/",
+  		      "upload_type": "",
+  		      "imgW": "0",
+  		      "imgH": "0",
+  		      "upload_annotation": "",
+  		      "keywords": "weekly check-in with home-division advisor",
+  		      "projectID": "4",
+  		      "tag": "0",
+  		      "redacted": ""
+  		  },
+  		  {
+  		      "timestmp": "2017-04-13 12:03:56",
+  		      "fieldnote": "met with fellow tool builders. Gathered feedback on prototype, brainstormed new ideas. ",
+  		      "upload": "",
+  		      "upload_path": "files\/",
+  		      "upload_type": "",
+  		      "imgW": "0",
+  		      "imgH": "0",
+  		      "upload_annotation": "",
+  		      "keywords": "meeting with fellow tool builders",
+  		      "projectID": "4",
+  		      "tag": "0",
+  		      "redacted": "true"
+  		  },
+  		  {
+  		      "timestmp": "2017-04-26 09:03:38",
+  		      "fieldnote": "Discussed the issue of disparity with a GH expert working outside of Zika efforts. Asked how she and her team handle disparities -- they add footnotes explaining the situation. ",
+  		      "upload": "",
+  		      "upload_path": "files\/",
+  		      "upload_type": "",
+  		      "imgW": "0",
+  		      "imgH": "0",
+  		      "upload_annotation": "",
+  		      "keywords": "\"footnote\" insight",
+  		      "projectID": "4",
+  		      "tag": "0",
+  		      "redacted": ""
+  		  },
+  		  {
+  		      "timestmp": "2017-04-26 09:03:39",
+  		      "fieldnote": "Visit from vis researcher. Met with primary collaborators, fellow tool builders, and home-division collaborators. Established plans moving forward post-field-study ",
+  		      "upload": "",
+  		      "upload_path": "files\/",
+  		      "upload_type": "",
+  		      "imgW": "0",
+  		      "imgH": "0",
+  		      "upload_annotation": "",
+  		      "keywords": "Visit from vis researcher",
+  		      "projectID": "4",
+  		      "tag": "0",
+  		      "redacted": "true"
+  		  },
+  		  {
+  		      "timestmp": "2017-05-02 22:03:08",
+  		      "fieldnote": "Screenshots of TP1 at the end of the field study",
+  		      "upload": "tp1.png",
+  		      "upload_path": "files\/tp1.png",
+  		      "upload_type": "image\/png",
+  		      "imgW": "8759",
+  		      "imgH": "3338",
+  		      "upload_annotation": "",
+  		      "keywords": "tech probe 1",
+  		      "projectID": "4",
+  		      "tag": "0",
+  		      "redacted": ""
+  		  },
+  		  {
+  		      "timestmp": "2017-05-03 10:03:51",
+  		      "fieldnote": "presented the final iteration of the technology probe in a \"brown bag\" series. Received very positive feedback. Got the impression that this work applies more broadly. Received questions about sustainability, and about outreach vs. analysis.",
+  		      "upload": "",
+  		      "upload_path": "files\/",
+  		      "upload_type": "",
+  		      "imgW": "0",
+  		      "imgH": "0",
+  		      "upload_annotation": "",
+  		      "keywords": "Brown bag presentation",
+  		      "projectID": "4",
+  		      "tag": "0",
+  		      "redacted": ""
+  		  },
+  		  {
+  		      "timestmp": "2017-05-05 10:03:10",
+  		      "fieldnote": "presented the technology probe to senior personnel. Very encouraging response. ",
+  		      "upload": "",
+  		      "upload_path": "files\/",
+  		      "upload_type": "",
+  		      "imgW": "0",
+  		      "imgH": "0",
+  		      "upload_annotation": "",
+  		      "keywords": "presentation to senior personnel",
+  		      "projectID": "4",
+  		      "tag": "0",
+  		      "redacted": ""
+  		  },
+  		  {
+  		      "timestmp": "2017-05-06 10:03:10",
+  		      "fieldnote": "Wrapping up at the field study, heading back to home institution to continue research",
+  		      "upload": "",
+  		      "upload_path": "files\/",
+  		      "upload_type": "",
+  		      "imgW": "0",
+  		      "imgH": "0",
+  		      "upload_annotation": "",
+  		      "keywords": "End of field study",
+  		      "projectID": "4",
+  		      "tag": "0",
+  		      "redacted": ""
+  		  },
+  		  {
+  		      "timestmp": "2017-05-10 05:03:22",
+  		      "fieldnote": "presented the technology probe to the larger Zika stakeholders via a webinar. Clear from this meeting that inconsistencies in that data present a major barrier for analysis. <br \/>\r\nAlso, need to provide info surrounding where each chunk of data is coming from. <br \/>\r\n<br \/>\r\nDid received multiple very encouraging emails from stakeholders interested in collaborating further. ",
+  		      "upload": "",
+  		      "upload_path": "files\/",
+  		      "upload_type": "",
+  		      "imgW": "0",
+  		      "imgH": "0",
+  		      "upload_annotation": "",
+  		      "keywords": "webinar with Zika Stakeholders",
+  		      "projectID": "4",
+  		      "tag": "0",
+  		      "redacted": "true"
+  		  },
+  		  {
+  		      "timestmp": "2017-09-20 09:03:48",
+  		      "fieldnote": "Resuming research on the project. Reflecting on what we've learned so far. Pursuing the idea of using annotation to capture contextual knowledge surrounding the nuances of epidemiological data. Starting a new iteration of the technology probe, based on feedback and with full support for annotation. ",
+  		      "upload": "",
+  		      "upload_path": "files\/",
+  		      "upload_type": "",
+  		      "imgW": "0",
+  		      "imgH": "0",
+  		      "upload_annotation": "",
+  		      "keywords": "resuming research",
+  		      "projectID": "4",
+  		      "tag": "0",
+  		      "redacted": ""
+  		  },
+  		  {
+  		      "timestmp": "2017-09-27 10:03:35",
+  		      "fieldnote": "adding a message board\/feed to allow users to make more general comments at the global and country levels. ",
+  		      "upload": "",
+  		      "upload_path": "files\/",
+  		      "upload_type": "",
+  		      "imgW": "0",
+  		      "imgH": "0",
+  		      "upload_annotation": "",
+  		      "keywords": "feature note",
+  		      "projectID": "4",
+  		      "tag": "0",
+  		      "redacted": ""
+  		  },
+  		  {
+  		      "timestmp": "2017-10-10 09:03:28",
+  		      "fieldnote": "Pre meeting: preparing for meeting with new primary collaborator to discuss the complexities of working with GH data. Want to explore the possibility of continuing the project with a new focus on annotation. <br\/><br \/> \r\nPost meeting: excellent meeting. Collaborator is interested in the idea of incorporating contextual knowledge into the vis pipeline. <br \/>\r\nGathered feedback on the new iteration of the technology probe <br \/>\r\nMentioned the possibility of doing a presentation\/workshop with larger group of Zika stakeholders at the end of October.",
+  		      "upload": "",
+  		      "upload_path": "files\/",
+  		      "upload_type": "",
+  		      "imgW": "0",
+  		      "imgH": "0",
+  		      "upload_annotation": "",
+  		      "keywords": "meeting with new primary collaborator",
+  		      "projectID": "4",
+  		      "tag": "0",
+  		      "redacted": "true"
+  		  },
+  		  {
+  		      "timestmp": "2017-10-29 09:00:00",
+  		      "fieldnote": "",
+  		      "upload": "tp2.png",
+  		      "upload_path": "files\/tp2.png",
+  		      "upload_type": "image\/png",
+  		      "imgW": "8987",
+  		      "imgH": "6541",
+  		      "upload_annotation": "Screenshots of the iteration of the technology probes used during the workshop",
+  		      "keywords": "tech probe 2",
+  		      "projectID": "4",
+  		      "tag": "0",
+  		      "redacted": ""
+  		  },
+  		  {
+  		      "timestmp": "2017-10-30 21:03:53",
+  		      "fieldnote": "great discussions with primary collaborator and with a Zika expert working in-country. Seems obvious in retrospect but I'm gathering that the nature of the annotation will depend on the specific questions being asked of the data. Some sort of tagging plus filtering system could be valuable.",
+  		      "upload": "",
+  		      "upload_path": "files\/",
+  		      "upload_type": "",
+  		      "imgW": "0",
+  		      "imgH": "0",
+  		      "upload_annotation": "",
+  		      "keywords": "meeting with primary collaborator and in-country Zika expert",
+  		      "projectID": "4",
+  		      "tag": "0",
+  		      "redacted": "true"
+  		  },
+  		  {
+  		      "timestmp": "2017-10-31 20:03:49",
+  		      "fieldnote": "Workshop went well, aside from the inevitable technical issues. <br \/>\r\n- collected a lot of sample annotations. <br \/>\r\n- collected usability feedback and feedback on features<br \/>\r\n- participants were engaged. great discussion. <br \/>\r\n- from discussion and survey feedback, sounds like annotation is a very valuable direction to head in. ",
+  		      "upload": "",
+  		      "upload_path": "files\/",
+  		      "upload_type": "",
+  		      "imgW": "0",
+  		      "imgH": "0",
+  		      "upload_annotation": "",
+  		      "keywords": "Annotation workshop",
+  		      "projectID": "4",
+  		      "tag": "0",
+  		      "redacted": "true"
+  		  },
+  		  {
+  		      "timestmp": "2017-11-13 04:03:16",
+  		      "fieldnote": "collected the last of the poll results. 10\/13. not everyone but enough to give us a sense of things. <br \/>\r\n<br \/>\r\npoll results results: <br \/>\r\nq1: On a scale of 0 to 10, how useful do you think the annotation (i.e. dropping pins) feature could be?<br \/>\r\n7.9 (avg.)<br \/>\r\nq2: Is this feature\/concept worth pursuing? (Y\/N) <br \/>\r\nY (100%)<br \/>\r\nq3: On a scale of 0 to 10, how useful do you think the commenting feature could be?<br \/>\r\n7.7 (avg.)<br \/>\r\nq4: Is this feature\/concept worth pursuing? (Y\/N)<br \/>\r\nY (100%)",
+  		      "upload": "Screen Shot 2018-03-22 at 9.56.25 PM.png",
+  		      "upload_path": "files\/Screen Shot 2018-03-22 at 9.56.25 PM.png",
+  		      "upload_type": "image\/png",
+  		      "imgW": "2278",
+  		      "imgH": "508",
+  		      "upload_annotation": "",
+  		      "keywords": "poll results",
+  		      "projectID": "4",
+  		      "tag": "0",
+  		      "redacted": ""
+  		  },
+  		  {
+  		      "timestmp": "2017-11-17 08:30:12",
+  		      "fieldnote": "news flash! PAHO already publishes footnotes along with their weekly epidemiological reports. This will provide a great dataset to experiment and prototype with.",
+  		      "upload": "",
+  		      "upload_path": "files\/",
+  		      "upload_type": "",
+  		      "imgW": "0",
+  		      "imgH": "0",
+  		      "upload_annotation": "",
+  		      "keywords": "Footnote insight!",
+  		      "projectID": "4",
+  		      "tag": "0",
+  		      "redacted": ""
+  		  },
+  		  {
+  		      "timestmp": "2017-12-10 09:03:24",
+  		      "fieldnote": "beginning to write things up. reflecting on problem characterization, data abstraction, research process",
+  		      "upload": "",
+  		      "upload_path": "files\/",
+  		      "upload_type": "",
+  		      "imgW": "0",
+  		      "imgH": "0",
+  		      "upload_annotation": "",
+  		      "keywords": "early stage writing",
+  		      "projectID": "4",
+  		      "tag": "0",
+  		      "redacted": ""
+  		  },
+  		  {
+  		      "timestmp": "2018-01-09 09:03:48",
+  		      "fieldnote": "beginning to see a more general model emerging - incorporating contextual information into the vis analysis pipeline",
+  		      "upload": "",
+  		      "upload_path": "files\/",
+  		      "upload_type": "",
+  		      "imgW": "0",
+  		      "imgH": "0",
+  		      "upload_annotation": "",
+  		      "keywords": "a more general model",
+  		      "projectID": "4",
+  		      "tag": "0",
+  		      "redacted": ""
+  		  },
+  		  {
+  		      "timestmp": "2018-01-10 14:03:40",
+  		      "fieldnote": "formalizing data and tasks for global health response coverage assessment",
+  		      "upload": "Screen Shot 2018-03-23 at 12.03.25 PM.png",
+  		      "upload_path": "files\/Screen Shot 2018-03-23 at 12.03.25 PM.png",
+  		      "upload_type": "image\/png",
+  		      "imgW": "1890",
+  		      "imgH": "1414",
+  		      "upload_annotation": "",
+  		      "keywords": "formalizing data and tasks",
+  		      "projectID": "4",
+  		      "tag": "0",
+  		      "redacted": ""
+  		  },
+  		  {
+  		      "timestmp": "2018-01-11 09:03:54",
+  		      "fieldnote": "starting to model the epidemiological data generation pipeline. ",
+  		      "upload": "pipeline.png",
+  		      "upload_path": "files\/pipeline.png",
+  		      "upload_type": "image\/png",
+  		      "imgW": "9141",
+  		      "imgH": "4031",
+  		      "upload_annotation": "",
+  		      "keywords": "epi data generation pipeline diagram",
+  		      "projectID": "4",
+  		      "tag": "0",
+  		      "redacted": ""
+  		  },
+  		  {
+  		      "timestmp": "2018-01-11 14:03:25",
+  		      "fieldnote": "zoom in on source of discrepancies at the country level",
+  		      "upload": "data_gen_pipeline_zoom.png",
+  		      "upload_path": "files\/data_gen_pipeline_zoom.png",
+  		      "upload_type": "image\/png",
+  		      "imgW": "2892",
+  		      "imgH": "1734",
+  		      "upload_annotation": "",
+  		      "keywords": "source of discrepancy diagram#2",
+  		      "projectID": "4",
+  		      "tag": "0",
+  		      "redacted": ""
+  		  },
+  		  {
+  		      "timestmp": "2018-01-18 14:03:47",
+  		      "fieldnote": "The DIKW pyramid from information sciences and knowledge management really resonates with what we've been seeing in our research. And, there's a whole body of literature from VAST (knowledge assisted visualization and visual analytics) surrounding the translation of the DIKW pyramid into computational space ",
+  		      "upload": "Model.png",
+  		      "upload_path": "files\/Model.png",
+  		      "upload_type": "image\/png",
+  		      "imgW": "4711",
+  		      "imgH": "3256",
+  		      "upload_annotation": "",
+  		      "keywords": "DIKW! & KAV",
+  		      "projectID": "4",
+  		      "tag": "0",
+  		      "redacted": ""
+  		  },
+  		  {
+  		      "timestmp": "2018-02-05 14:10:16",
+  		      "fieldnote": "delivered pre-paper talk to research group. Very encouraged by the response. very useful feedback. ",
+  		      "upload": "",
+  		      "upload_path": "files\/",
+  		      "upload_type": "",
+  		      "imgW": "0",
+  		      "imgH": "0",
+  		      "upload_annotation": "",
+  		      "keywords": "pre-paper talk to research group",
+  		      "projectID": "4",
+  		      "tag": "0",
+  		      "redacted": ""
+  		  },
+  		  {
+  		      "timestmp": "2018-02-10 09:03:35",
+  		      "fieldnote": "prototypical system designed to support the stages of the process model.",
+  		      "upload": "system2b.png",
+  		      "upload_path": "files\/system2b.png",
+  		      "upload_type": "image\/png",
+  		      "imgW": "10472",
+  		      "imgH": "3480",
+  		      "upload_annotation": "",
+  		      "keywords": "system prototype",
+  		      "projectID": "4",
+  		      "tag": "0",
+  		      "redacted": ""
+  		  },
+  		  {
+  		      "timestmp": "2018-02-23 15:03:31",
+  		      "fieldnote": "Walked through system, gathered feedback, brainstormed ideas. Discussed annotation template, need to use language that will resonate with GH experts.",
+  		      "upload": "",
+  		      "upload_path": "files\/",
+  		      "upload_type": "",
+  		      "imgW": "0",
+  		      "imgH": "0",
+  		      "upload_annotation": "",
+  		      "keywords": "meeting with primary collaborator",
+  		      "projectID": "4",
+  		      "tag": "0",
+  		      "redacted": "true"
+  		  },
+  		  {
+  		      "timestmp": "2018-03-03 15:03:17",
+  		      "fieldnote": "phone meeting between both vis researchers and primary collaborator to discuss and triangulate vis researcher's formalization of learning (the notion of implicit error\/discrepancy) ",
+  		      "upload": "",
+  		      "upload_path": "files\/",
+  		      "upload_type": "",
+  		      "imgW": "0",
+  		      "imgH": "0",
+  		      "upload_annotation": "",
+  		      "keywords": "meeting with vis researchers and primary collaborator",
+  		      "projectID": "4",
+  		      "tag": "0",
+  		      "redacted": ""
+  		  },
+  		  {
+  		      "timestmp": "2018-03-13 10:03:52",
+  		      "fieldnote": "Work session between vis researchers - mapping out the stages of the research process",
+  		      "upload": "IMG_2315.jpg",
+  		      "upload_path": "files\/IMG_2315.jpg",
+  		      "upload_type": "image\/jpeg",
+  		      "imgW": "3489",
+  		      "imgH": "1534",
+  		      "upload_annotation": "",
+  		      "keywords": "mapping research process",
+  		      "projectID": "4",
+  		      "tag": "0",
+  		      "redacted": ""
+  		  },
+  		  {
+  		      "timestmp": "2018-03-19 14:30:05",
+  		      "fieldnote": "Joint interview with two Zika experts (in-country expert, primary collaborator)",
+  		      "upload": "",
+  		      "upload_path": "files\/",
+  		      "upload_type": "",
+  		      "imgW": "0",
+  		      "imgH": "0",
+  		      "upload_annotation": "",
+  		      "keywords": "validation interview",
+  		      "projectID": "4",
+  		      "tag": "0",
+  		      "redacted": ""
+  		  },
+  		  {
+  		      "timestmp": "2018-03-19 20:03:41",
+  		      "fieldnote": "Semantic zoom was snazzy, but proved to be a little too hectic in practice. Have returned to the \"toggle between viewing levels\" approach. ",
+  		      "upload": "final_iteration.png",
+  		      "upload_path": "files\/final_iteration.png",
+  		      "upload_type": "image\/png",
+  		      "imgW": "10268",
+  		      "imgH": "6764",
+  		      "upload_annotation": "",
+  		      "keywords": "system iteration",
+  		      "projectID": "4",
+  		      "tag": "0",
+  		      "redacted": ""
+  		  },
+  		  {
+  		      "timestmp": "2018-03-26 09:00:41",
+  		      "fieldnote": "wrapping up writing/formalization of learning",
+  		      "upload": "",
+  		      "upload_path": "",
+  		      "upload_type": "",
+  		      "imgW": "",
+  		      "imgH": "",
+  		      "upload_annotation": "",
+  		      "keywords": "end of formalization of learning",
+  		      "projectID": "4",
+  		      "tag": "0",
+  		      "redacted": ""
+  		  }
+  		  ]
+
+  		  }
+  		  ];		  
+		  
+		  
+  /*END DATA*/		  
+		  
+  //start timeline vis
+  			data = alldata[2].data;
+  			var projects = alldata[1];
+			
+  			var parseTime = d3.timeParse("%Y-%m-%d %H:%M:%S");
+			
+			
+			
+  		    data.forEach(function(d,i) {
+  		        d.date = parseTime(d.timestmp);
+  		        d.close = 100;
+  				d.ind = i;
+  		    });	
+			
+  			phasedata.forEach(function(d,i){
+  		        d.bdate = parseTime(d.begindate);
+  				d.edate = parseTime(d.enddate);
+  		        d.close = 100;
+  				d.ind = i;
+  			})
+			
+  			//console.log(data);
+			
+  			data_all = data;	
+			  
+  			var selection = 4;
+  			data = data_all.filter(function(d){ return d.projectID==selection;});
+  			data_all_dates = data;
+  			initTimeline();
+  			initText();
+			
+  			//set form value
+  			document.cookie = "selection="+selection+"";
+  
+ 
+  function initTimeline(){// Scale the range of the data
+ 
+ 
+    //clear everything 
+  	filter.selectAll("g").remove();
+  
+    x.domain(d3.extent(data, function(d) { return d.date; }));
+    y.domain([0, d3.max(data, function(d) { return d.close; })]);
+  
+  
+    xf.domain(d3.extent(data, function(d) { return d.date; }));
+    yf.domain([0, d3.max(data, function(d) { return d.close; })]);
+
+  filter.append("g")
+      .attr("transform", "translate(0," + height_f + ")")
+      .call(d3.axisBottom(x)
+  	.ticks(5)
+  	. tickFormat(d3.timeFormat("%b %y")));
+
+  /////brush filter - from https://bl.ocks.org/Fil/2d43867ba1f36a05459c7113c7f6f98a ////
+  var brush = d3.brushX()
+      .extent([[0, 0], [width, height_f]])
+      .on("start brush end", brushmoved);	
+
+  var ticks = filter.append("g")
+  	.attr("class","lines")
+  	.selectAll("line")
+  	.data(data)
+  	.enter().append("line")
+  	.attr("x1",function(d){return xf(d.date);})
+  	.attr("y1", 0)
+  	.attr("x2",function(d){return xf(d.date);})
+  	.attr("y2", height_f);	
+	
+  var gBrush = filter.append("g")
+      .attr("class", "brush")
+      .call(brush);
+	
+  var phases = filter.append("g")
+  	.selectAll("rect")
+  	.data(phasedata)
+  	.enter().append("rect")
+  	.attr("class","phases")
+  	.attr("x",function(d){return xf(d.bdate);})
+  	.attr("y",-12)
+  	.attr("width",function(d){return xf(d.edate)-xf(d.bdate);})
+  	.attr("height",8)
+  	.attr("stroke","steelblue")
+  	.attr("stroke-width",0)
+  	.attr("fill",function(d,i){return phasecolors[i];})
+  	.on("mouseover", function(d) {
+  	       div.transition()
+  	         .duration(200)
+  	         .style("opacity", .9);
+  	       div.html("<b>Phase:</b> "+ d.title + "<br/><br/><b>Participants:</b> " + d.participants + "<br/><br/><b>Outcomes:</b> " + d.outcomes)
+  	         .style("left", (d3.event.pageX) + "px")
+  	         .style("top", (d3.event.pageY - 28) + "px");
+  	       })
+  	     .on("mouseout", function(d) {
+  	       div.transition()
+  	         .duration(500)
+  	         .style("opacity", 0);
+  	       });
+  	//.on("mouseover");
+	
+		
+  	//.attrs({ x: 10, y: 10, width: 80, height: 80, fill: 'red' })
+	
+  	// style brush resize handle
+  	// https://github.com/crossfilter/crossfilter/blob/gh-pages/index.html#L466
+  	var brushResizePath = function(d) {
+  	    var e = +(d.type == "e"),
+  	        x = e ? 1 : -1,
+  	        y = height_f / 2;
+  	    return "M" + (.5 * x) + "," + y + "A6,6 0 0 " + e + " " + (6.5 * x) + "," + (y + 6) + "V" + (2 * y - 6) + "A6,6 0 0 " + e + " " + (.5 * x) + "," + (2 * y) + "Z" + "M" + (2.5 * x) + "," + (y + 8) + "V" + (2 * y - 8) + "M" + (4.5 * x) + "," + (y + 8) + "V" + (2 * y - 8);
+  	}
+
+  	var handle = gBrush.selectAll(".handle--custom")
+  	  .data([{type: "w"}, {type: "e"}])
+  	  .enter().append("path")
+  	    .attr("class", "handle--custom")
+  	    .attr("stroke", "#000")
+  	    .attr("cursor", "ew-resize")
+  	    .attr("d", brushResizePath);
+
+  gBrush.call(brush.move, [0,width]);	
+
+  		  function brushmoved() {
+  		    var s = d3.event.selection;
+  		    if (s == null) {
+  		      handle.attr("display", "none");
+  		    } else {
+  		      var sx = s.map(xf.invert);
+  		      handle.attr("display", null).attr("transform", function(d, i) { return "translate(" + [ s[i], - height_f / 4] + ")"; });
+  			  data = data_all_dates;
+  			  data = data.filter(function(d){return (d.date >= sx[0] && d.date <= sx[1]);});
+  			  x.domain(d3.extent(data,function(d){return d.date;})); 
+  			}
+  			drawtimeline();
+  		  }
+  /////////end brush filter///////////////////////
+  	  }
+  
+  
+  function drawtimeline(){
+	
+    svg.selectAll("*").remove();
+	
+    svg.append("path")
+        .data([data])
+        .attr("class", "line")
+        .attr("d", valueline);	  
+	  
+    svg.selectAll("circle")
+  	  .data(data)
+  	  .enter().append("circle")
+  	  .attr("class","node")
+  	  .attr("r",4)
+  	  .attr("cx",function(d){return x(d.date);})
+  	  .attr("cy",function(d){return y(height/2);})
+  	  .attr("id",function(d,i){return "flnode"+d.ind;})
+  	  .on("mouseover", mouseOverNode)
+  	  .on("mouseout", mouseOutNode)
+  	  .on("click", mouseClickNode);
+
+  	 var formatDate = d3.timeFormat("%-m/%-e");
+	 
+  	 var labels = svg.selectAll("g")
+  	 	.data(data)
+  	 	.enter()
+  	 	.append("g")
+  	 	.attr("class","labels");
+	
+  	labels.append("rect")
+  		.attr("class","keywordRects")
+  		.attr("fill","#F8F8F8")
+  		.attr("x",function(d){return x(d.date)-5;})
+  		.attr("y", function(d,i){ 
+  			var t = Math.floor(i/2)%4;
+  			if(i%2==0){return y(height/2)+20+t*10;}else{return y(height/2)-33-t*10;}
+  		});	
+				
+		
+  	labels.append("text")
+  	   	.text(function(d) {return formatDate(new Date(""+d.date+""));})
+  	   	.attr("x", function(d){return x(d.date)-5;})
+  	   	.attr("y", function(d,i){ 
+  			var t = Math.floor(i/2)%4;
+  			if(i%2==0){return y(height/2)+30+t*10;}else{return y(height/2)-25-t*10;}
+  		})
+  	   	.attr("font-family", "sans-serif")
+  	   	.attr("font-size", "9px")
+  		.attr("class","dates")
+  	   	.attr("fill", "black")
+  		.on("mouseover",function(d){d3.select("#flnode"+d.ind).dispatch("mouseover");})
+    	  	.on("mouseout",function(d){d3.select("#flnode"+d.ind).dispatch("mouseout");})
+    	  	.on("click",function(d){d3.select("#flnode"+d.ind).dispatch("click");});
+		
+  	labels.selectAll(".dates").each(function(d,i){
+  		d.dbb = this.getBBox();
+  	});	
+		
+		
+  labels.append("line")
+  	.attr("class","lableLine")
+  	.attr("x1",function(d){return x(d.date);})
+  	.attr("y1", function(d,i){if(i%2==0){return y(height/2)+5;}else{return y(height/2)-5;}})
+  	.attr("x2",function(d){return x(d.date);})
+  	.attr("y2", function(d,i){
+  		var t = Math.floor(i/2)%4;
+  		if(i%2==0){return y(height/2)+22+t*10;}else{return y(height/2)-22-t*10;}
+  	});		
+	
+		
+  		labels.append("image")
+  	.attr("xlink:href",function(d){return "./"+d.upload_path;})
+  		.attr("width",function(d){if(d.upload!=""){return 20;}else{return 0;}})
+  		.attr("height",function(d){if(d.upload!=""){var s = d.imgW/20; return d.imgH/s;}else{return 0;}})
+  		.attr("transform",function(d,i){
+  			var t = Math.floor(i/2)%4;
+  			var xx = x(d.date)-7.5;
+  			var yy = 0;
+  			if(i%2==0){yy = y(height/2)+32+t*10;}else{yy = y(height/2)-50-t*10;}
+			
+  			return "translate("+xx+","+yy+")";
+  		})
+  		.attr("class","imgIcon")
+  		.on("mouseover",function(d){d3.select("#flnode"+d.ind).dispatch("mouseover");})
+    	  	.on("mouseout",function(d){d3.select("#flnode"+d.ind).dispatch("mouseout");})
+    	  	.on("click",function(d){d3.select("#flnode"+d.ind).dispatch("click");});
+		
+		
+  		labels.append("rect")
+  		.attr("class","imgIconRect")
+  		.attr("width",function(d){if(d.upload!=""){return 20;}else{return 0;}})
+  		.attr("height",function(d){if(d.upload!=""){var s = d.imgW/20; return d.imgH/s;}else{return 0;}})
+  		.attr("transform",function(d,i){
+  			var t = Math.floor(i/2)%4;
+  			var xx = x(d.date)-7.5;
+  			var yy = 0;
+  			if(i%2==0){yy = y(height/2)+32+t*10;}else{yy = y(height/2)-50-t*10;}
+			
+  			return "translate("+xx+","+yy+")";
+  		});
+		
+	
+		
+  	labels.append("text")
+  	   	.attr("x", function(d){return x(d.date)+d.dbb.width-3;})
+  	   	.attr("y", function(d,i){ 
+  			var t = Math.floor(i/2)%4;
+  			if(i%2==0){return y(height/2)+30+t*10;}else{return y(height/2)-25-t*10;}
+  		})
+  		.attr("font-family", "sans-serif")
+  	   	.attr("font-size", "9px")
+  	   	.attr("fill", "black")
+  		.attr("class","keywords")
+  		.text(function(d) {return d.keywords;})
+  		.on("mouseover",function(d){d3.select("#flnode"+d.ind).dispatch("mouseover");})
+    	  	.on("mouseout",function(d){d3.select("#flnode"+d.ind).dispatch("mouseout");})
+    	  	.on("click",function(d){d3.select("#flnode"+d.ind).dispatch("click");});
+		
+  		labels.selectAll(".keywords").each(function(d,i){
+  			d.bb = this.getBBox();
+  		});
+		
+		
+  		labels.selectAll(".keywordRects")
+  			.attr("width",function(d){if(d.bb!=undefined){return d.bb.width+d.dbb.width;}else{return 0;}})
+  		.attr("height",function(d){if(d.bb!=undefined){return d.bb.height;}else{return 0;}});
+		
+		
+  	}
+	
+  function initText(){
+    note.selectAll("*").remove();	
+	
+    var noteText = note.selectAll("div")
+  		.data(data)
+  		.enter()
+  		.append("div")
+    		.attr("class", "flnote_div")
+    .attr("id",function(d,i){return "flnote"+d.ind;})
+    .attr("overflow","scroll")
+    		.attr("selected",0)
+  		.style("opacity",0); 		
+	  	  
+   noteText.append("text")
+  	  .attr("id",function(d,i){return "date"+i;})
+    .attr("class", "flheader")
+    .html(function(d){return "Date: "+d.date;})
+     	  .attr("x",10)
+    .attr("y",20)
+    .attr("font-family", "sans-serif")
+     	  .attr("font-size", "11px")
+     	  .attr("fill", "black");  
+	  
+	  
+  
+  	  noteText.append("text")
+  	  .html(function(d){return "<strong>keywords: </strong>"+d.keywords;})
+  	  .attr("class", "flnote")
+  	  .attr("font-family", "sans-serif")
+  	  .attr("font-size", "11px")
+  	  .attr("fill", "black");
+  
+    noteText.append("text")
+    .html(function(d){if(d.upload_annotation != ""){return "<br><br><strong>Artifact notes:</strong> "+d.upload_annotation;}})
+    .attr("font-family", "sans-serif")
+     	  .attr("font-size", "11px")
+     	  .attr("fill", "black"); 
+	  
+	  
+  	 noteText.append("text")  
+  	  .attr("id",function(d,i){return "note"+i;})
+  	  .attr("class","flnotetxt")	  
+  	  .attr("font-family", "sans-serif")
+  	  .attr("font-size", "11px")
+  	  .attr("fill", "black")
+  	  .html(function(d){if(d.fieldnote!=""){var str = d.fieldnote;return "<br><br><strong>Fieldnote: </strong>"+str;}});	  
+  
+  
+    var nw = 750;
+    var nh = 800;
+  
+    var notesvg = noteText.append("svg")
+    .attr("width",function(d){if(d.upload!=""){return nw;}else{return 0;}})
+    .attr("height",function(d){if(d.upload!=""){return nh;}else{return 0;}});
+  
+    notesvg.append("image")
+    .attr("xlink:href",function(d){if(d.upload!=""){return "./"+d.upload_path;}})
+    .attr("width",function(d){if(d.upload!=""){ var s = d.imgW/nw; return d.imgW/s;}else{return 0;}})
+    .attr("height",function(d){if(d.upload!=""){var s = d.imgW/nw; return d.imgH/s;}else{return 0;}});	  
+	  
+  	}
+	
+    function mouseOverNode(d,i){
+  	  d3.select(this).attr("r",6).attr();
+  	  d3.select("#flnote"+d.ind).style("opacity",1);
+	  
+    }
+  
+    function mouseOutNode(d,i){	  
+  	  if(d3.select("#flnote"+d.ind).attr("selected")!=1){
+  	  d3.select(this).attr("r",4);
+  	  d3.select("#flnote"+d.ind).style("opacity",0);
+    	  }
+    }
+  
+    function mouseClickNode(d,i){
+  	  if(select_ID!=null && select_ID!=d.ind){
+  		  d3.select("#flnote"+select_ID).attr("selected",0);
+  		  d3.select('#flnode'+select_ID).dispatch("mouseout");
+  		  d3.select("#flnote"+select_ID).style("opacity",0);
+  	  	}
+  	  select_ID = d.ind;
+  	  var tf = d3.select("#flnote"+d.ind).attr("selected");
+  	  if(tf==0){
+  	  	d3.select("#flnote"+d.ind).attr("selected",1);
+  		d3.select(this).attr("r",6).attr();
+  		d3.select("#flnote"+d.ind).style("opacity",1);
+  	  }else{
+  	  	d3.select("#flnote"+d.ind).attr("selected",0);
+  		d3.select(this).attr("r",4).attr();
+  		d3.select("#flnote"+d.ind).style("opacity",1);
+  	  }
+    }
+  
+  
+    function wrapLabel(text,width) {
+  		text.each(function(){
+  			var text = d3.select(this),
+  	        words = text.text().split(/\s+/).reverse(),
+  	        word,
+  	        line = [],
+  	        lineNumber = 0,
+  	        lineHeight = 1.1, // ems
+  	        y = text.attr("y"),
+  			x = text.attr("x"),
+  	        dy = 8;
+  	        tspan = text.text(null).append("tspan").attr("x", x).attr("y", y).attr("dy", dy + "em");
+			
+			
+  			while (word = words.pop()) {
+  			      line.push(word);
+  			      tspan.text(line.join(" "));
+  			      if (tspan.node().getComputedTextLength() > width) {
+  			        line.pop();
+  			        tspan.text(line.join(" "));
+  			        line = [word];
+  			        tspan = text.append("tspan").attr("x", x).attr("y", y).attr("dy", ++lineNumber * lineHeight + dy + "em").text(word);
+  			      }
+  			    }
+			
+  		});
+          }
+  
+    function wrap(text,width) {
+  		text.each(function(){
+  			var text = d3.select(this),
+  	        words = text.text().split(/\s+/).reverse(),
+  	        word,
+  	        line = [],
+  	        lineNumber = 0,
+  	        lineHeight = 1.1, // ems
+  	        y = text.attr("y"),
+  			x = text.attr("x"),
+  	        dy = 8;
+  	        tspan = text.text(null).append("tspan").attr("x", 0).attr("y", y).attr("dy", dy + "em");
+			
+  			while (word = words.pop()) {
+  			      line.push(word);
+  			      tspan.text(line.join(" "));
+  			      if (tspan.node().getComputedTextLength() > width) {
+  			        line.pop();
+  			        tspan.text(line.join(" "));
+  			        line = [word];
+  			        tspan = text.append("tspan").attr("x", 0).attr("y", y).attr("dy", ++lineNumber * lineHeight + dy + "em").text(word);
+  			      }
+  			    }
+			
+  		});
+          }
+
+
+  </script>  
+	
+	</body>
+</html>
+
